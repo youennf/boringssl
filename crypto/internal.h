@@ -299,7 +299,8 @@ OPENSSL_INLINE void OPENSSL_disable_malloc_failures_for_testing(void) {}
 OPENSSL_INLINE void OPENSSL_enable_malloc_failures_for_testing(void) {}
 #endif
 
-#if defined(__has_builtin)
+// WEBRTC_WEBKIT_BUILD change, we disable builtins for now since Ventura bots have issues with them.
+#if !defined(OPENSSL_NO_ASM) && defined(__has_builtin)
 #define OPENSSL_HAS_BUILTIN(x) __has_builtin(x)
 #else
 #define OPENSSL_HAS_BUILTIN(x) 0
